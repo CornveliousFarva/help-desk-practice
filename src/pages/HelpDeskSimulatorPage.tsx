@@ -10,6 +10,8 @@ import ScoreSummary from "../components/ScoreSummary";
 type HelpDeskTicket = (typeof tickets)[number];
 
 function TicketDetails({ ticket }: { ticket: HelpDeskTicket }) {
+  const [notes, setNotes] = useState("");
+
   return (
     <div className="mb-6">
       <div className="flex flex-wrap items-center justify-between gap-4">
@@ -50,6 +52,20 @@ function TicketDetails({ ticket }: { ticket: HelpDeskTicket }) {
         <p className="text-slate-300">
           {ticket.description}
         </p>
+      </div>
+
+      <div className="mt-6">
+        <h3 className="mb-2 text-lg font-semibold">
+          Technician Notes
+        </h3>
+
+        <textarea
+          value={notes}
+          onChange={(e) => setNotes(e.target.value)}
+          className="w-full rounded-xl border border-slate-700 bg-slate-800 p-3"
+          rows={5}
+          placeholder="Document troubleshooting steps..."
+        />
       </div>
 
       <div className="mt-6">
