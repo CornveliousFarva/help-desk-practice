@@ -1,5 +1,5 @@
 // src/types/ticket.ts
-
+export type TicketStatus = "Open" | "In Progress" | "Resolved" | "Closed"
 export type TicketPriority = "Low" | "Medium" | "High" | "Critical"
 
 export type TicketAction =
@@ -38,6 +38,7 @@ export type Ticket = {
   id: number
   title: string
   client: string
+  status: TicketStatus
   priority: TicketPriority
   category: string
   environment: string[]
