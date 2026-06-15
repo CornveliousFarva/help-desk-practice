@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { tickets } from "../data/tickets";
 import type { TicketAction } from "../types/ticket";
+// import TicketDetails from "../components/TicketDetails";
 import ActionPanel from "../components/ActionPanel";
 import ScoreSummary from "../components/ScoreSummary";
 
@@ -10,11 +11,63 @@ type HelpDeskTicket = (typeof tickets)[number];
 
 function TicketDetails({ ticket }: { ticket: HelpDeskTicket }) {
   return (
-    <div className="rounded-2xl border border-slate-700 bg-slate-950 p-6 mb-6">
-      <h2 className="text-2xl font-semibold">Support Ticket</h2>
-      <pre className="mt-4 overflow-x-auto text-slate-300">
-        {JSON.stringify(ticket, null, 2)}
-      </pre>
+    <div className="mb-6">
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <p className="text-sm uppercase tracking-wide text-slate-400">
+            Ticket #{ticket.id}
+          </p>
+
+          <h2 className="text-2xl font-semibold">
+            {ticket.title}
+          </h2>
+
+          <p className="text-slate-300">
+            {ticket.client}
+          </p>
+        </div>
+
+        <div className="flex gap-2">
+          <span className="rounded-full bg-slate-800 px-3 py-1 text-sm">
+            {ticket.status}
+          </span>
+
+          <span className="rounded-full bg-slate-800 px-3 py-1 text-sm">
+            {ticket.priority}
+          </span>
+
+          <span className="rounded-full bg-slate-800 px-3 py-1 text-sm">
+            {ticket.category}
+          </span>
+        </div>
+      </div>
+
+      <div className="mt-6">
+        <h3 className="mb-2 text-lg font-semibold">
+          Description
+        </h3>
+
+        <p className="text-slate-300">
+          {ticket.description}
+        </p>
+      </div>
+
+      <div className="mt-6">
+        <h3 className="mb-2 text-lg font-semibold">
+          Environment
+        </h3>
+
+        <div className="flex flex-wrap gap-2">
+          {ticket.environment.map((env) => (
+            <span
+              key={env}
+              className="rounded-full border border-slate-700 px-3 py-1 text-sm"
+            >
+              {env}
+            </span>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
