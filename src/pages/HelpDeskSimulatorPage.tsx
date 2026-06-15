@@ -3,6 +3,9 @@
 import { useState } from "react";
 import { tickets } from "../data/tickets";
 import type { TicketAction } from "../types/ticket";
+// import TicketDetails from "../components/TicketDetails";
+// import ActionPanel from "../components/ActionPanel";
+// import ScoreSummary from "../components/ScoreSummary";
 
 const actionLabels: Record<TicketAction, string> = {
   "ask_clarifying_question": "Ask Clarifying Question",
