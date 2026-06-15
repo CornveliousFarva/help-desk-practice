@@ -1,32 +1,60 @@
-// src/types/ticket.ts
+// src/data/tickets.ts
 
-export type TicketStatus = "open" | "in-progress" | "resolved";
+import type { Ticket } from "../types/ticket"
 
-export type TicketPriority = "low" | "medium" | "high";
-
-export type TicketAction =
-  | "ask-question"
-  | "check-status"
-  | "check-history"
-  | "comment"
-  | "add-attachment"
-  | "assign"
-  | "transfer"
-  | "escalate"
-  | "resolve"
-  | "reopen"
-  | "close";
-
-export type Ticket = {
-  id: number;
-  title: string;
-  client: string;
-  status: TicketStatus;
-  priority: TicketPriority;
-  category: string;
-  environment: string[];
-  description: string;
-  correctActions: TicketAction[];
-  badActions: TicketAction[];
-  salesOpportunity?: string;
-};
+export const tickets: Ticket[] = [
+  {
+    id: 1,
+    title: "User cannot sign into Microsoft 365",
+    client: "North Coast Dental",
+    priority: "High",
+    category: "Microsoft 365",
+    environment: ["Windows 11", "Microsoft 365", "MFA"],
+    description:
+      "A user reports that they cannot access Outlook or Teams after getting a new phone.",
+    correctActions: [
+      "ask_clarifying_question",
+      "basic_troubleshooting",
+      "check_kb",
+    ],
+    badActions: ["close_ticket"],
+    salesOpportunity:
+      "Recommend documenting MFA recovery steps for future onboarding/offboarding."
+  },
+  {
+    id: 2,
+    title: "Printer shows offline",
+    client: "Harbor Legal Group",
+    priority: "Medium",
+    category: "Printers",
+    environment: ["Windows 10", "Network Printer", "Office LAN"],
+    description:
+      "Several users say the main office printer is offline, but the printer display shows ready.",
+    correctActions: [
+      "ask_clarifying_question",
+      "basic_troubleshooting",
+      "check_kb",
+    ],
+    badActions: ["escalate", "close_ticket"],
+    salesOpportunity:
+      "Suggest proactive printer documentation or managed print monitoring."
+  },
+  {
+    id: 3,
+    title: "VPN will not connect from home",
+    client: "Pacific Accounting Services",
+    priority: "High",
+    category: "Networking",
+    environment: ["Windows 11", "VPN", "Remote Work"],
+    description:
+      "A remote employee says the VPN fails immediately after entering credentials.",
+    correctActions: [
+      "ask_clarifying_question",
+      "basic_troubleshooting",
+      "escalate",
+    ],
+    badActions: ["close_ticket"],
+    salesOpportunity:
+      "Recommend reviewing remote access documentation and MFA enrollment."
+  }
+]
